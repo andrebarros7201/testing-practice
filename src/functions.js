@@ -15,7 +15,34 @@ const Calculator = (function () {
 })();
 
 function caesarCipher(string, shiftFactor) {
-  return "abc";
+  let output = "";
+
+  for (let i = 0; i < string.length; i++) {
+    let ascii = string[i].charCodeAt();
+    if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
+      ascii += shiftFactor;
+      if ((ascii > 90 && string[i] <= "Z") || ascii > 122) {
+        ascii -= 26;
+      }
+    }
+    output += String.fromCharCode(ascii);
+  }
+  return output;
 }
 
-module.exports = { capitalize, reverseString, Calculator, caesarCipher };
+function analyzeArray(array) {
+  return {
+    average: array.reduce((a, b) => a + b, 0) / array.length,
+    min: Math.min(...array),
+    max: Math.max(...array),
+    length: array.length,
+  };
+}
+
+module.exports = {
+  capitalize,
+  reverseString,
+  Calculator,
+  caesarCipher,
+  analyzeArray,
+};
